@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>회원가입</title>
+</head>
+<body>
+<h1>JOIN PAGE</h1>
+<div>
+  <div class="imageContainer" style="min-height: 60px; background-image: url('images/loading.gif'); background-repeat: no-repeat; background-size: 60px; background-position: left; ">
+    <img src="/pic1"/>
+  </div>
+  <div>
+    <input type="number" class="money" min="1000" step="1000" value="1000"/>
+    <button class="btn2">LOTTO</button>
+  </div>
+  <div>
+    <button class="btn">REFRESH</button>
+  </div>
+</div>
+<script>
+  //비어있는 input창은 number로 받고, 내용에 1000원, 2000원 등 돈 단위로 받는다.
+  document.querySelector(".btn2").addEventListener('click', (e) => {
+    const imageContainer = document.querySelector(".imageContainer");
+    //초기화
+    imageContainer.innerHTML = '';
+    const money = document.querySelector(".money").value;
+    //로또 번호 갯수 추출
+    const count = money / 1000;
+    const value = new Date().getMilliseconds();
+    imageContainer.innerHTML = '<img class="image" src="/pic1?v=' + value + '&num=' + count + '"/>';
+  });
+
+  document.querySelector(".btn").addEventListener('click', () => {
+    const imageContainer = document.querySelector(".imageContainer");
+    imageContainer.innerHTML = "";
+    setTimeout(() => {
+      document.querySelector(".money").value = 1000;
+      const value = new Date().getMilliseconds();
+      imageContainer.innerHTML = '<img src="/pic1?v=' + value + '">';
+    }, 100);
+  }, false);
+</script>
+</body>
+</html>
